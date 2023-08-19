@@ -4,11 +4,17 @@ public class EnemyAlertState : EnemyBaseState
 {
     public override void enterState(EnemyStateManager manager)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("ALERT!");
+        agent.destination = player.position;
     }
 
     public override void updateState(EnemyStateManager manager)
     {
-        throw new System.NotImplementedException();
+        agent.destination = player.position;
+        //if distance becomes too great investigate last known location of player
+        if(Vector3.Distance(enemy.transform.position, player.transform.position) > 10f)
+        {
+            manager.SwitchState(manager.investigateState);
+        }
     }
 }
