@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStateManager : MonoBehaviour
 {
+    public Transform Enemy;
     EnemyBaseState currentState;
     EnemyPatrolState patrolState = new EnemyPatrolState();
     EnemyInvestigateState investigateState= new EnemyInvestigateState();
@@ -13,12 +14,17 @@ public class EnemyStateManager : MonoBehaviour
     void Start()
     {
         currentState = patrolState;
-        currentState.enterState();
+        currentState.enterState(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        currentState.updateState(this);
+    }
+    void SwitchState(EnemyBaseState state)
+    {
+        currentState = state;
+        currentState.enterState(this);
     }
 }
