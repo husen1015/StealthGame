@@ -16,5 +16,11 @@ public class EnemyAlertState : EnemyBaseState
         {
             manager.SwitchState(manager.investigateState);
         }
+
+        //if caught player endGame
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) < 0.3f)
+        {
+            manager.caughtPlayer();
+        }
     }
 }

@@ -19,7 +19,7 @@ public class EnemyPatrolState : EnemyBaseState
 
     public override void updateState(EnemyStateManager manager)
     {
-        if(Vector3.Distance(enemy.transform.position, player.transform.position) <= 5f)
+        if(Vector3.Distance(enemy.transform.position, player.transform.position) <= 10f)
         {
             manager.SwitchState(manager.alertState);
         }
@@ -35,4 +35,5 @@ public class EnemyPatrolState : EnemyBaseState
         agent.destination = nextWaypoint.position;
 
     }
+
 }

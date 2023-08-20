@@ -6,9 +6,10 @@ public class Movement : MonoBehaviour
 {
     float horizontalInput;
     float verticalInput;
+    bool accelerate;
     Vector3 moveDir;
     Rigidbody rigidbody;
-    public float speed = 10f;
+    public float StartingSpeed = 10f;
     public Transform orientation;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +24,21 @@ public class Movement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            accelerate= true;
+        }
+        else
+        {
+            accelerate= false;
+        }
+        Debug.Log(accelerate);
     }
     private void FixedUpdate()
     {
         moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rigidbody.AddForce(moveDir.normalized * speed, ForceMode.Force);
+
+        float adjustedSpeed = accelerate? StartingSpeed + 5: StartingSpeed;
+        rigidbody.AddForce(moveDir.normalized * adjustedSpeed, ForceMode.Force);
     }
 }

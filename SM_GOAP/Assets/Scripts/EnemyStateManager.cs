@@ -33,4 +33,8 @@ public class EnemyStateManager : MonoBehaviour
         currentState = state;
         currentState.enterState(this);
     }
+    public void caughtPlayer()
+    {
+        Debug.Log("game over:/");
+    }
 }
